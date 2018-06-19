@@ -4,7 +4,6 @@ import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
 import { routes } from './routes';
 
-Vue.use(VueResource);
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -12,6 +11,8 @@ const router = new VueRouter({
     simplismente o nome da propriedade */
   routes
 });
+
+Vue.use(VueResource);
 
 new Vue({
   el: '#app',
