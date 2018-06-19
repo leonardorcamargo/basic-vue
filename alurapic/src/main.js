@@ -4,15 +4,15 @@ import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
 import { routes } from './routes';
 
+Vue.use(VueResource);
 Vue.use(VueRouter);
 
 const router = new VueRouter({
   /*routes: routes; Em ECS6, quando o valor da propriedade tem o mesmo nome, podemos deixar 
     simplismente o nome da propriedade */
-  routes
+  routes,
+  mode: 'history'
 });
-
-Vue.use(VueResource);
 
 new Vue({
   el: '#app',
