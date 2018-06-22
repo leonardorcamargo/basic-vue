@@ -7,18 +7,18 @@
 		<form @submit.prevent="grava()">
 			<div class="controle">
 				<label for="titulo">TÍTULO</label>
-				<input :value="foto.titulo" @input="foto.titulo = $event.target.value" id="titulo" autocomplete="off">
+				<input v-model.lazy="foto.titulo" id="titulo" autocomplete="off">
 			</div>
 
 			<div class="controle">
 				<label for="url">URL</label>
-				<input :value="foto.url" @input="foto.url = $event.target.value" id="url" autocomplete="off">
-				<imagem-responsiva/>
+				<input v-model.lazy="foto.url" id="url" autocomplete="off">
+				<imagem-responsiva v-show="foto.url" :url="foto.url" :titulo="foto.titulo"/>
 			</div>
 
 			<div class="controle">
 				<label for="descricao">DESCRIÇÃO</label>
-				<textarea :value="foto.descricao" @input="foto.descricao = $event.target.value" id="descricao" autocomplete="off"></textarea>
+				<textarea v-model="foto.descricao" id="descricao" autocomplete="off"></textarea>
 			</div>
 
 			<div class="centralizado">
