@@ -45,8 +45,8 @@
 
 			remove(foto) {
 
-				this.$http
-					.delete(`/v1/fotos/${foto._id}`)
+				this.resource
+					.delete({id: foto._id})
 					.then(() => {
 							this.mensagem = 'Foto removida com sucesso.';
 							let indice = this.fotos.indexOf(foto);
@@ -84,7 +84,10 @@
 		
 		created() {
 
-			this.$http.get('v1/fotos')
+			this.resource = this.$resource('v1/fotos{/id}');
+
+			this.resource
+				.query()
 				.then(res => res.json())
 				.then(fotos => this.fotos = fotos, err => console.log(err));
 		}
