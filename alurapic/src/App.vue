@@ -22,7 +22,7 @@ import Menu from './components/shared/menu/Menu.vue';
 
 			return {
 				
-				routes
+				routes: routes.filter( route => route.menu)
 			}
 		}
 	}
