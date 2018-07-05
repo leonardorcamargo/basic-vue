@@ -1,7 +1,9 @@
 <template>
 
 	<div>
-		<h1 class="centralizado">Cadastro</h1>
+		<h1 v-if="foto._id" class="centralizado">Alteração</h1>
+		<h1 v-else class="centralizado">Inclusão</h1>
+
 		<h2 class="centralizado">{{ foto.titulo }}</h2>
 
 		<form @submit.prevent="grava()">
@@ -60,7 +62,11 @@ export default {
 
 			this.service
 				.cadastra(this.foto)
-				.then(() => this.foto = new Foto(), err => console.log(err));
+				.then(() => {
+					if (this.id) this.$router.push({name: 'home'});
+					this.foto = new Foto()
+				}, 
+				err => console.log(err));
 		}
 	},
 
