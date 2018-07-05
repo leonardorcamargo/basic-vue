@@ -56,8 +56,7 @@
 							this.fotos.splice(indice,1);
 							this.mensagem = 'Foto removida com sucesso.';
 						}, err => {
-							console.log(err);
-							this.mensagem = 'Nao foi possivel remover a foto';
+							this.mensagem = err.message;
 						});
 			}
 		},
@@ -92,7 +91,7 @@
 
 			this.service
 				.lista()
-				.then(fotos => this.fotos = fotos, err => console.log(err));
+				.then(fotos => this.fotos = fotos, err => this.mensagem = err.message);
 		}
 	}
 </script>
