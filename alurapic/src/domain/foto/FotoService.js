@@ -1,44 +1,49 @@
 export default class FotoService {
 
-	constructor(resource) {
+    constructor(resource) {
 
-		this._resource = resource('v1/fotos{/id}');
-	}
+        this._resource = resource('v1/fotos{/id}');
+    } 
 
-	cadastra(foto) {
+    lista() {
 
-		if (foto._id) {
-			return this._resource.update({ id: foto._id}, foto);
-		} else {
-			return this._resource.save(foto);
-		}
-	}
+        return this._resource
+            .query()
+            .then(res => res.json(), err => {
+                console.log(err);
+                throw new Error('Não foi possível obter as fotos');
+            });
+    }  
 
-	lista() {
+    cadastra(foto) {
 
-		return this._resource
-			.query()
-			.then(res => res.json(), err => {
+        if(foto._id) {
 
-				console.log(err.message);
-				throw new Error('Não foi possível listar as fotos. Tente mais tarde');
-			});
-	}
+            return this._resource
+                .update({ id: foto._id}, foto);
 
-	apaga(id) {
+        } else {
+            return this._resource
+                .save(foto);    
+        }
 
-		return this._resource
-			.delete({ id })
-			.then(null, err => {
-				console.log(err.message);
-				throw new Error('Não foi possível remover a foto')
-			});
-	}
+    }
+    
+    apaga(id) {
 
-	busca(id) {
+        return this._resource
+            .delete({ id })
+            .then(null, err => {
+                console.log(err);
+                throw new Error('Não foi possível remover a foto');
+            })
+    }
 
-		return this._resource
-			.get({ id })
-			.then( res => res.json());
-	}
+    busca(id) {
+
+        return this._resource
+            .get({ id })
+            .then(res => res.json());
+    }
+
 }
