@@ -9,6 +9,8 @@ import msg from './pt_BR';
 import 'bootstrap/dist/css/bootstrap.css';
 import './assets/css/teste.css';
 import './assets/js/teste.js';
+import 'bootstrap/dist/js/bootstrap.js';
+
 
 Vue.use(VueResource);
 Vue.http.options.root = 'http://localhost:3000';
